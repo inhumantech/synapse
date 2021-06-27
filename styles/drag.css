@@ -1,0 +1,70 @@
+.draggable {
+	cursor: move;
+}
+.resizable {
+	background-color: #555;
+	border: 1px solid #777;
+	border-radius: 10px;
+	position: relative;
+	/* overflow: hidden; */
+	min-height: 50px;
+	padding: 10px;
+	width: 200px;
+	height: 60px;
+	left: 50px;
+	top: 50px;
+	max-height: 100%;
+}
+
+.hidden{
+  overflow: hidden;
+  max-height: 100%;
+}
+.ui-resizable-handle {
+	width: 7px;
+	height: 7px;
+	background-color: #fff;
+	border: 1px solid #0000;
+	position: absolute;
+	border-radius: 3px;
+}
+.ui-resizable-nw {
+	left: -5px;
+	top: -5px;
+	cursor: nw-resize;
+}
+.ui-resizable-ne {
+	top: -5px;
+	right: -5px;
+	cursor: ne-resize;
+}
+.ui-resizable-sw {
+	bottom: -5px;
+	left: -5px;
+	cursor: sw-resize;
+}
+.ui-resizable-se {
+	bottom: -5px;
+	right:-5px;
+	cursor: se-resize;
+}
+.ui-resizable-n {
+	top: -5px;
+	left:50%;
+	cursor: n-resize;
+}
+.ui-resizable-s {
+	bottom: -5px;
+	left: 50%;
+	cursor: s-resize;
+}
+.ui-resizable-w {
+	left:-5px;
+	top:calc(50% - 5px);
+	cursor: w-resize;
+}
+.ui-resizable-e {
+	right:-5px;
+	top:calc(50% - 5px);
+	cursor: e-resize;
+}

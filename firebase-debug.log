@@ -1,0 +1,32 @@
+[debug] [2018-08-08T19:56:30.425Z] ----------------------------------------------------------------------
+[debug] [2018-08-08T19:56:30.427Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\ecl3d\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve
+[debug] [2018-08-08T19:56:30.427Z] CLI Version:   4.0.3
+[debug] [2018-08-08T19:56:30.427Z] Platform:      win32
+[debug] [2018-08-08T19:56:30.427Z] Node Version:  v8.11.3
+[debug] [2018-08-08T19:56:30.428Z] Time:          Wed Aug 08 2018 12:56:30 GMT-0700 (Pacific Daylight Time)
+[debug] [2018-08-08T19:56:30.428Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-08-08T19:56:30.454Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-08-08T19:56:30.455Z] > authorizing via signed-in user
+[debug] [2018-08-08T19:56:30.456Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/inhumansynapse  
+  
+ Wed Aug 08 2018 12:56:30 GMT-0700 (Pacific Daylight Time)
+[debug] [2018-08-08T19:56:31.395Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-08T19:56:31.396Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/inhumansynapse/tokens  
+  
+ Wed Aug 08 2018 12:56:31 GMT-0700 (Pacific Daylight Time)
+[debug] [2018-08-08T19:56:32.125Z] <<< HTTP RESPONSE 200
+[debug] [2018-08-08T19:56:32.126Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/inhumansynapse  
+  
+ Wed Aug 08 2018 12:56:32 GMT-0700 (Pacific Daylight Time)
+[debug] [2018-08-08T19:56:33.288Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'G:\My Drive\Facebook\Macbook\Web\Styles'...
+[info] 
+[debug] [2018-08-08T19:56:33.300Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/568305694763/clients/_:getWebAppConfig  
+  
+ Wed Aug 08 2018 12:56:33 GMT-0700 (Pacific Daylight Time)
+[debug] [2018-08-08T19:56:34.589Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+

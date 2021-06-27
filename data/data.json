@@ -1,0 +1,81 @@
+{
+	"nodes": [
+		{
+			"name": "Picture Node",
+			"top": "10px",
+			"left": "10px",
+			"width": "400px",
+			"html": "<img src='/images/Pixel_Ideas.jpg'>"
+		},
+		{
+			"name": "Basic Node",
+			"top": "-100px",
+			"left": "10px",
+			"width": "100px",
+			"html": ""
+		},
+		{
+			"name": "Text Node",
+			"top": "50px",
+			"left": "20px",
+			"width": "300px",
+			"html": "<div class=\"text\" contenteditable=\"true\"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ornare dolor convallis eros faucibus, nec convallis nisi fringilla. Interdum et malesuada fames ac ante ipsum primis in faucibus. hendrerit augue. <br><br>Morbi tristique feugiat elit, ac posuere tellus iaculis ultricies. Sed a nulla vel diam gravida bibendum nec id lorem. Maecenas commodo ipsum eget purus dignissim bibendum.</div>"
+		},
+		{
+			"name": "Erik Portfolio",
+			"top": "300px",
+			"left": "800px",
+			"width": "300px",
+			"html": "<iframe src=\"https://www.youtube.com/embed/2UrKy7Jfkr0?rel=0&amp;showinfo=0\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>"
+		},
+		{
+			"name": "Sketchfab",
+			"top": "300px",
+			"left": "300px",
+			"width": "300px",
+			"html": "<iframe width=\"300\" height=\"200\" src=\"https://sketchfab.com/models/55df6c934d824c478f1a34efe37a1be6/embed?autospin=0&amp;preload=1\" frameborder=\"0\" allow=\"autoplay;\" mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\"></iframe>"
+		},
+		{
+			"name": "Soundcloud",
+			"top": "60px",
+			"left": "600px",
+			"width": "300px",
+			"html": ""
+		},
+		{
+			"name": "Googe Drive",
+			"top": "700px",
+			"left": "700px",
+			"width": "300px",
+			"html": "<iframe src=\"https://docs.google.com/presentation/d/e/2PACX-1vRflys-X27AUJaud2RCUL08aIbb1dKQgfGuO6byC-EGsKr3ADhAWT5ncDi0MS4mdC9mEH0dU97LyhH3/embed?start=false&loop=false&delayms=3000\" frameborder=\"0\" width=\"600px\" height=\"500px\" allowfullscreen=\"true\" mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\"></iframe>"
+		},
+		{
+			"name": "Erik4D.com",
+			"top": "700px",
+			"left": "400px",
+			"width": "300px",
+			"html": "<iframe src=\"https://www.erik4d.com\" frameborder=\"0\" allowfullscreen=\"true\"></iframe>"
+		},
+		{
+			"name": "Google Maps",
+			"top": "700px",
+			"left": "0px",
+			"width": "300px",
+			"html": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d6075.179076291996!2d-122.03493307816588!3d37.53204746299442!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1533167179215\" width=\"400\" height=\"300\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>"
+		}
+	],
+	"links": [
+		{
+			"start": 0,
+			"end": 1
+		},
+		{
+			"start": 2,
+			"end": 3
+		},
+		{
+			"start": 0,
+			"end": 2
+		}
+	]
+}

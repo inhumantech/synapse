@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<meta charset="utf-8">
+	<title>Synapse</title>
+	<link rel="stylesheet" href="/styles/styles.css">
+	<link rel="stylesheet" href="/styles/drag.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+	<div id="toolbar">
+		<div class="button" id="add-button">Add Node</div>
+		<div class="button" id="remove-button">Remove Node</div>
+		<div class="button" id="add-picture-button">Add Picture Node</div>
+	</div>
+	<div id="frame">
+		<div id="view">
+			<!------------------------------------------------------------------------------------------------------------>
+			<!-- Grid -->
+			<!------------------------------------------------------------------------------------------------------------>
+			<svg width="10000px" height="10000px" left="-4000px" top="-4000px">
+				<defs>
+					<pattern id="smallGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+						<path d="M 20 0 L 0 0 0 20" fill="none" stroke="black" stroke-width="1"/>
+					</pattern>
+					<pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
+						<rect width="100" height="100" fill="url(#smallGrid)"/>
+						<path d="M 100 0 L 0 0 0 100" fill="none" stroke="black" stroke-width="2"/>
+					</pattern>
+				</defs>
+				<rect width="100%" height="100%" fill="url(#grid)" />
+				<!-- <path v-for="link in links" v-bind:d="drawLink(link)" stroke="#fff" stroke-width="4" stroke-dasharray="0" stroke-linecap="round" fill="transparent"/> -->
+				<path id="p1" d="M 0 0 C 0 0, 8000 8000, 8000 8000" stroke="#f9f" stroke-width="2" stroke-dasharray="0" stroke-linecap="round" fill="transparent"/>
+				<path id="p2" d="M 4200 4020 C 4200 4090, 4400 4000, 4400 4080" stroke="#ff9" stroke-width="2" stroke-dasharray="0" stroke-linecap="round" fill="transparent"/>
+				<circle id="c1" cx="50" cy="150" r="5" stroke="#0000" stroke-width="0" fill="#f9f" />
+				<circle id="c2" cx="50" cy="50" r="5" stroke="#0000" stroke-width="0" fill="#f9f" />
+				<circle id="c3" cx="50" cy="150" r="5" stroke="#0000" stroke-width="0" fill="#ff9" />
+				<circle id="c4" cx="50" cy="50" r="5" stroke="#0000" stroke-width="0" fill="#ff9" />
+			</svg>
+
+			<!------------------------------------------------------------------------------------------------------------>
+			<!-- Nodes -->
+			<!------------------------------------------------------------------------------------------------------------>
+			<node v-for="node in nodes" v-bind:node="node" v-bind:key="node.id"></node>
+
+			<!------------------------------------------------------------------------------------------------------------>
+			<!-- Test -->
+			<!------------------------------------------------------------------------------------------------------------>
+			<div class='resizable draggable'>
+				<div class="hidden">Resize Me</div>
+				<div class="ui-resizable-handle ui-resizable-nw"></div>
+				<div class="ui-resizable-handle ui-resizable-ne"></div>
+				<div class="ui-resizable-handle ui-resizable-sw"></div>
+				<div class="ui-resizable-handle ui-resizable-se"></div>
+				<div class="ui-resizable-handle ui-resizable-n"></div>
+				<div class="ui-resizable-handle ui-resizable-s"></div>
+				<div class="ui-resizable-handle ui-resizable-e"></div>
+				<div class="ui-resizable-handle ui-resizable-w"></div>
+			</div>
+		</div>
+	</div>
+
+	<script src="/code/script.js"></script>
+	<script type="text/javascript">
+		//----------------------------------------------------------------------//
+		// Dragging //
+		//----------------------------------------------------------------------//
+		$(".resizable").resizable({
+			handles: {
+				nw: ".ui-resizable-nw",
+				ne: ".ui-resizable-ne",
+				sw: ".ui-resizable-sw",
+				se: ".ui-resizable-se",
+				n: ".ui-resizable-n",
+				e: ".ui-resizable-e",
+				s: ".ui-resizable-s",
+				w: ".ui-resizable-w"
+			}
+		});
+		$(".draggable")
+		.draggable()
+		.on("click", function() {
+			if ($(this).is(".ui-draggable-dragging")) {
+				return;
+			} else {
+				$(this).draggable("option", "disabled", true);
+				$(this).prop("contenteditable", "true");
+				$(this).css("cursor", "text");
+			}
+		});
+
+		//----------------------------------------------------------------------//
+		// Moving //
+		//----------------------------------------------------------------------//
+		var view = document.querySelector("#view");
+		var n1 = document.querySelector("#n1");
+		var p1 = document.querySelector("#p1");
+		var p2 = document.querySelector("#p2");
+		var svg = document.querySelector("svg");
+		var zoom = 1;
+
+		// Add Nodes //
+		$("#add-button").click(AddNode);
+		function AddNode() {
+			console.log("Add Node");
+			vue.nodes.push({
+					name: "New Node",
+					top: "10px",
+					left: "10px",
+					width: "400px",
+					height: "40px",
+					html: ""
+			})
+		}
+
+		// Zoom //
+		// $('#view').bind('mousewheel', function(e){
+		//   e.preventDefault();
+		//   var scale = 1 + e.originalEvent.wheelDelta / 120 / 100.0;
+		//   zoom *= scale;
+		//   console.log(scale);
+		//   $('#view').css('transform', 'scale(' + zoom + ')');
+		// });
+
+		// Mouse events //
+		document.addEventListener("mousedown", onMouseDown);
+		document.addEventListener("mousemove", onMove);
+		document.addEventListener("mouseup", onUp);
+
+		var drag_node = null;
+		var dx = 0;
+		var dy = 0;
+
+		//------------------------------------------------------------------//
+		function onMouseDown(e) {
+			e.preventDefault();
+			dx = e.pageX - $("#frame").offset().left;
+			dy = e.pageY - $("#frame").offset().top;
+
+			console.log(dx + " " + dy);
+			if ($(e.target).hasClass("node")) drag_node = e.target;
+			else if ($(e.target).parents(".node").length > 0)
+			drag_node = $(e.target).parents(".node")[0];
+			else if ($(e.target).parents("#view").length > 0) drag_node = view;
+
+			if (drag_node) {
+				dx = e.pageX - $(drag_node).offset().left;
+				dy = e.pageY - $(drag_node).offset().top;
+			}
+		}
+
+		//------------------------------------------------------------------//
+		function onUp(e) {
+			e.preventDefault();
+			drag_node = null;
+		}
+
+		//------------------------------------------------------------------//
+		function onMove(e) {
+			e.preventDefault();
+			if (drag_node == null) return;
+
+			if (1) {
+				var x;
+				var y;
+				if (drag_node === view) {
+					x = e.pageX - $("#frame").offset().left - dx * zoom;
+					y = e.pageY - $("#frame").offset().top - dy * zoom;
+				} else {
+					x = e.pageX - $("#view").offset().left - dx;
+					y = e.pageY - $("#view").offset().top - dy;
+					x /= zoom;
+					y /= zoom;
+
+					if (e.shiftKey) {
+						x = Math.round(x / 20.0) * 20;
+						y = Math.round(y / 20.0) * 20;
+					}
+				}
+
+				var node = drag_node.__vue__
+				if(node){
+					node = node.node;
+					node.left = x + "px";
+					node.top =  y + "px";
+				}
+				else{
+					drag_node.style.left = x + "px";
+					drag_node.style.top = y + "px";
+				}
+				return;
+
+				if (drag_node != view) {
+					var n1_x = $("#n1").position().left + 4040 + $("#n1").width();
+					var n1_y = $("#n1").position().top + 4020;
+					var n2_x = $("#n2").position().left + 4000;
+					var n2_y = $("#n2").position().top + 4080;
+					var path1 =
+					"M " +
+					n1_x +
+					" " +
+					n1_y +
+					" C " +
+					(n1_x + 100) +
+					" " +
+					n1_y +
+					", " +
+					(n2_x - 100) +
+					" " +
+					n2_y +
+					", " +
+					n2_x +
+					" " +
+					n2_y;
+					p1.setAttribute("d", path1);
+
+					$("#c1").attr("cx", n1_x);
+					$("#c1").attr("cy", n1_y);
+					$("#c2").attr("cx", n2_x);
+					$("#c2").attr("cy", n2_y);
+
+					var n1_x = $("#n3").position().left + 4040 + $("#n3").width();
+					var n1_y = $("#n3").position().top + 4020;
+					var n2_x = $("#n4").position().left + 4000;
+					var n2_y = $("#n4").position().top + 4080;
+					var path2 =
+					"M " +
+					n1_x +
+					" " +
+					n1_y +
+					" C " +
+					(n1_x + 100) +
+					" " +
+					n1_y +
+					", " +
+					(n2_x - 100) +
+					" " +
+					n2_y +
+					", " +
+					n2_x +
+					" " +
+					n2_y;
+					p2.setAttribute("d", path2);
+
+					$("#c3").attr("cx", n1_x);
+					$("#c3").attr("cy", n1_y);
+					$("#c4").attr("cx", n2_x);
+					$("#c4").attr("cy", n2_y);
+				}
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+body{
+  background-color: #444;
+  font-family: arial;
+  margin: 0;
+  padding: 0;
+}
+#toolbar{
+  display: flex;
+  background-color: #999;
+  color: #666;
+  padding: 4px;
+}
+.button{
+  background-color: #ccc;
+  border-radius: 5px;
+  margin: 2px 2px;
+  padding: 8px 18px;
+}
+.button:hover{
+  background-color: #eee;
+}
+
+#frame{
+  overflow: hidden;
+  height: 100%;
+}
+
+#view, #frame{
+  position: relative;
+  display: block;
+  padding: 0;
+  color: #fff;
+  background-color: #343434;
+}
+.node{
+  position: absolute;
+  background-color: #000;
+  border-radius: 8px;
+  margin: 0;
+  padding: 8px 18px;
+  width: auto;
+  border: 2px solid #333f;
+  box-shadow: 0px 5px 10px #0008;
+  left: 0px;
+  top: 0px;
+}
+.node:hover{
+  border: 2px solid #444f;
+  box-shadow: 0px 5px 20px #000f;
+}
+.text-node, .picture-node{
+  position: absolute;
+  background-color: #000;
+  border-radius: 8px;
+  margin: 0;
+  padding: 0;
+  width: auto;
+}
+.title{
+  background-color: #000;
+  border-radius: 8px;
+  margin: 0;
+  padding: 8px 18px;
+  width: auto;
+}
+.text-node .text{
+  color: #aaa;
+  background-color: #222;
+  border-radius: 0px 0px 8px 8px;
+  font-size: 0.8em;
+  margin: 0;
+  padding: 8px 18px;
+}
+
+img{/*         color: #aaa; *//*         background-color: #222; *//*         border-radius: 0px 0px 8px 8px; *//*         font-size: 0.8em; */margin: 0;padding: 0;width: 100%;height: 100%;}
+.content{
+      padding: 0;
+      margin: 0;
+}
+
+.video-node{
+  width: 400px;
+}
+.video-node iframe{
+  width: 100%;
+  height: 240px;
+}
+.web-node{
+  width: 600px;
+  top: 940px;
+  left: 20px;
+}
+.web-node iframe{
+  width: 200%;
+  height: 200%;
+  transform: scale(0.5);
+  transform-origin: 0 0;
+}
+.web-node .content{
+    height: 400px;
+}
+
+.map-node{
+  width: 500px;
+  top: 540px;
+  left: -480px;
+}
+.map-node iframe{
+  width: 100%;
+  height: 100%;
+}
+.map-node .content{
+    height: 300px;
+}
+
+
+.doc-node{
+  width: 300px;
+  top: 40px;
+  left: -360px;
+}
+.doc-node iframe{
+  width: 100%;
+  height: 100%;
+}
+.doc-node .content{
+    height: 430px;
+}
+
+.sheets-node{
+  width: 600px;
+  top: 920px;
+  left: -660px;
+}
+.sheets-node iframe{
+  width: 200%;
+  height: 200%;
+  transform: scale(0.5);
+  transform-origin: 0 0;
+}
+.sheets-node .content{
+    height: 430px;
+}
+
+
+path:hover{
+  color: #fff;
+}
+
+.highlight{
+  position: absolute;
+  background-color: #f502;
+  border: 1px solid #f504;
+}
+.highlight:hover{
+  background-color: #f505;
+  border: 1px solid #f508;
+}
+svg{
+  position: relative;
+  left: -4000px;
+  top: -4000px;
+/*         z-index: 0; */
+}
